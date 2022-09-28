@@ -5,7 +5,7 @@ serve(async (req: Request) => {
   const url = new URL(req.url);
   const artist = url.searchParams.get("artist");
 
-  const res = await fetch(`https://${artist}.bandcamp.com`);
+  const res = await fetch(`https://${artist}.bandcamp.com/music`);
 
   if (!artist || !res.ok) {
     return Response.json(
