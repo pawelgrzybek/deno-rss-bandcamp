@@ -8,7 +8,15 @@ serve(async (req: Request) => {
   const res = await fetch(`https://${artist}.bandcamp.com`);
 
   if (!artist || !res.ok) {
-    throw Error("Uuuups! 🤷‍♂️");
+    return Response.json(
+      {
+        error:
+          "Something is broken here. Did you add an artist search param? For example: https://rss-bandcamp.deno.dev/?artist=plash",
+      },
+      {
+        status: 404,
+      }
+    );
   }
 
   const html = await res.text();
